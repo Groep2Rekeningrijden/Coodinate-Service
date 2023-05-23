@@ -64,13 +64,12 @@ namespace Coordinate_Service.Services
             }
             catch (Exception)
             {
-
                 throw;
             }
 
             PublishCoordinatesDTO response = new PublishCoordinatesDTO
             {
-                VehicleId = model.VehicleId,
+                VehicleId = dto.VehicleID,
                 Cords = model.Cords
             };
 
