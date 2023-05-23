@@ -13,6 +13,9 @@ namespace Coordinate_Service.Data.CoordinatesMongoDb
             Expression<Func<TDocument, bool>> filterExpression,
             Expression<Func<TDocument, TProjected>> projectionExpression);
 
+        TDocument FilterByVehicleID(
+        Expression<Func<TDocument, bool>> filterExpression);
+
         Task InsertOneAsync(TDocument document);
 
         Task UpdateArray(CoordinatesModel model);

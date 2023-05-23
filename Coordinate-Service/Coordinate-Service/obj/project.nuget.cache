@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "noRgWJo4aV+mEI8AcUP5n+YtNLuICySU8sM/61UaQcmTS3Eml/CbuVIeOaWGS1yqYclFcWLoL9fWR/sLcCW0rA==",
+  "dgSpecHash": "GyTGmRyo43YxhEiBcgzNhn812GT9PeBvj7K/LK5O603DflPQ0AfK55DK7PfG+QJl+mEW6CX8y5KXfnObJLjamQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Nickv\\Documents\\School\\Semester 6\\sem 6 group\\Coordinate-Service\\Coordinate-Service\\Coordinate-Service\\Coordinate-Service.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,8 @@
     "C:\\Users\\Nickv\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\Nickv\\.nuget\\packages\\masstransit\\8.0.15\\masstransit.8.0.15.nupkg.sha512",
     "C:\\Users\\Nickv\\.nuget\\packages\\masstransit.abstractions\\8.0.15\\masstransit.abstractions.8.0.15.nupkg.sha512",
+    "C:\\Users\\Nickv\\.nuget\\packages\\masstransit.aspnetcore\\7.3.1\\masstransit.aspnetcore.7.3.1.nupkg.sha512",
+    "C:\\Users\\Nickv\\.nuget\\packages\\masstransit.extensions.dependencyinjection\\7.3.1\\masstransit.extensions.dependencyinjection.7.3.1.nupkg.sha512",
     "C:\\Users\\Nickv\\.nuget\\packages\\masstransit.rabbitmq\\8.0.15\\masstransit.rabbitmq.8.0.15.nupkg.sha512",
     "C:\\Users\\Nickv\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.5\\microsoft.aspnetcore.authentication.jwtbearer.7.0.5.nupkg.sha512",
     "C:\\Users\\Nickv\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.3\\microsoft.aspnetcore.openapi.7.0.3.nupkg.sha512",

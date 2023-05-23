@@ -1,3 +1,4 @@
+using Coordinate_Service.Models;
 using Coordinate_Service.Services;
 using Microsoft.AspNetCore.Mvc;
 using RekeningRijden.RabbitMq;
@@ -29,8 +30,24 @@ namespace Coordinate_Service.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task getCompleteModel()
+        {
+            try
+            {
+                StatusDTO dto = new StatusDTO
+                {
+                    VehicleID = "string1",
+                    Status = 1
+                };
+                _coordinatesServiceLayer.Status(dto);
+            }
+            catch (Exception ex)
+            {
 
-
+                throw;
+            }
+        }
 
 
     }

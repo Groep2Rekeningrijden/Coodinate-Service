@@ -56,5 +56,12 @@ namespace Coordinate_Service.Data.CoordinatesMongoDb
             var filter = Builders<TDocument>.Filter.Eq("VehicleId", vehicleId);
             return _collection.Find(filter).Any();
         }
+
+        public virtual TDocument FilterByVehicleID(
+        Expression<Func<TDocument, bool>> filterExpression)
+        {
+            return _collection.Find(filterExpression).FirstOrDefault();
+        }
+
     }
 }

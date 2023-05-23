@@ -1,5 +1,7 @@
 ﻿using Coordinate_Service.Data.CoordinatesMongoDb;
+using Coordinate_Service.DTOs;
 using Coordinate_Service.Models;
+using MassTransit;
 using RekeningRijden.RabbitMq;
 
 namespace Coordinate_Service.Services
@@ -7,11 +9,13 @@ namespace Coordinate_Service.Services
     public class CoordinatesServiceLayer : ICoordinatesServiceLayer
     {
         private readonly ICoordsRepository<CoordinatesModel> _coordsRepository;
-        
+        private readonly IPublishEndpoint publishEndpoint;
 
-        public CoordinatesServiceLayer(ICoordsRepository<CoordinatesModel> repository)         
+
+        public CoordinatesServiceLayer(ICoordsRepository<CoordinatesModel> repository, IPublishEndpoint endpoint)         
         {
-            _coordsRepository = repository;        
+            _coordsRepository = repository;     
+            publishEndpoint = endpoint;
         }
 
         public async Task Write(RawInputDTO dto)
@@ -49,16 +53,28 @@ namespace Coordinate_Service.Services
             }
         }
 
-        public void test()
+        public async Task Status(StatusDTO dto)
         {
+            if (dto.Status != 1) return;
+            CoordinatesModel model = new();
+            try
+            {
+                model = _coordsRepository.FilterByVehicleID(x => x.VehicleId == dto.VehicleID);
+                if (model == null) throw new Exception("MODEL IS NULL");
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
 
+            PublishCoordinatesDTO response = new PublishCoordinatesDTO
+            {
+                VehicleId = model.VehicleId,
+                Cords = model.Cords
+            };
 
-
-
-
-
-
+            await publishEndpoint.Publish<PublishCoordinatesDTO>(response);
         }
 
 

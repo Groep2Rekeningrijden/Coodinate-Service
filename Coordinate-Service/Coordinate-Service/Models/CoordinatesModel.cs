@@ -5,15 +5,18 @@ namespace Coordinate_Service.Models
     [BsonCollection("Coordinates")]
     public class CoordinatesModel : Document
     {
-        public string VehicleId;
+        public string VehicleId { get; set; } = string.Empty;
 
-        public List<Coordinates> Cords { get; set; }
+        public List<Coordinates> Cords { get; set; } = new List<Coordinates>();
 
         public CoordinatesModel(string id) 
         { 
-            VehicleId = id;
-            Cords = new List<Coordinates>();     
+            VehicleId = id; 
         }   
 
+        public CoordinatesModel()
+        {
+
+        }
     }
 }
