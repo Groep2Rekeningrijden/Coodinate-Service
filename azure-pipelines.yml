@@ -52,7 +52,7 @@ stages:
               projects: "$(solution)"
               arguments: "--configuration $(buildConfiguration)"
 
-  - stage: docker Image
+  - stage: docker_image
     displayName: "Build Docker Image"
     jobs:
       - job: BuildJob
