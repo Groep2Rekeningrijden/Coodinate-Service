@@ -53,21 +53,21 @@ stages:
               command: "build"
               projects: "$(solution)"
               arguments: "--configuration $(buildConfiguration)"
-  - stage: SonarCloudAnalysis
-    displayName: 'SonarCloud Analysis'
-    jobs:
-      - job: SonarCloudJob
-        displayName: 'Run SonarCloud Analysis'
-        pool:
-          vmImage: 'ubuntu-latest'
-        steps:
-          - checkout: self
-          - script: |
-              # Run SonarCloud Analysis
-              sonarcloud:
-                organization: 'FontysVerkeer'
-                projectKey: 'fontysverkeer'
-            displayName: 'Run SonarCloud Analysis'
+  # - stage: SonarCloudAnalysis
+  #   displayName: 'SonarCloud Analysis'
+  #   jobs:
+  #     - job: SonarCloudJob
+  #       displayName: 'Run SonarCloud Analysis'
+  #       pool:
+  #         vmImage: 'ubuntu-latest'
+  #       steps:
+  #         - checkout: self
+  #         - script: |
+  #             # Run SonarCloud Analysis
+  #             sonarcloud:
+  #               organization: 'FontysVerkeer'
+  #               projectKey: 'fontysverkeer'
+  #           displayName: 'Run SonarCloud Analysis'
   - stage: DockerBuildAndPush
     displayName: "Build and push Docker Image"
     jobs:
