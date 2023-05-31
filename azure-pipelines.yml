@@ -18,6 +18,8 @@ variables:
   buildPlatform: "Any CPU"
   buildConfiguration: "Release"
   dockerRegistryServiceConnection: "FontysServiceConnection"
+  dockerRepository: "fontyssa/Coordinate-Service"
+  dockerFile: "**/**/Dockerfile"
 
 resources:
   repositories:
@@ -51,9 +53,23 @@ stages:
               command: "build"
               projects: "$(solution)"
               arguments: "--configuration $(buildConfiguration)"
-
-  - stage: docker_image
-    displayName: "Build Docker Image"
+  - stage: SonarCloudAnalysis
+    displayName: 'SonarCloud Analysis'
+    jobs:
+      - job: SonarCloudJob
+        displayName: 'Run SonarCloud Analysis'
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - checkout: self
+          - script: |
+              # Run SonarCloud Analysis
+              sonarcloud:
+                organization: 'FontysVerkeer'
+                projectKey: 'fontysverkeer'
+            displayName: 'Run SonarCloud Analysis'
+  - stage: DockerBuildAndPush
+    displayName: "Build and push Docker Image"
     jobs:
       - job: BuildJob
         displayName: "Build and Tag"
@@ -64,31 +80,22 @@ stages:
             displayName: "Build and Tag Docker Image"
             inputs:
               containerRegistry: "$(dockerRegistryServiceConnection)"
-              repository: "fontyssa/Coordinate-Service"
+              repository: "$(dockerRepository)"
               command: "buildAndPush"
-              Dockerfile: "**/**/Dockerfile"
+              Dockerfile: "$(dockerFile)"
               tags: |
                 latest
                 $(Build.BuildId)
 
-  - stage: Deploy
-    displayName: "Deploy Docker Image"
-    dependsOn: docker_image
-    jobs:
-      - job: DeployJob
-        displayName: "Push to Docker Hub"
-        pool:
-          vmImage: "ubuntu-latest"
-        steps:
-          - task: Docker@2
-            displayName: "Push Docker Image"
-            inputs:
-              containerRegistry: "$(dockerRegistryServiceConnection)"
-              repository: "fontyssa/Coordinate-Service"
-              command: "push"
-              tags: |
-                latest
-                $(Build.BuildId)
+
+
+
+
+
+
+
+
+
 
     # - stage: test_isolated
     #   jobs:
