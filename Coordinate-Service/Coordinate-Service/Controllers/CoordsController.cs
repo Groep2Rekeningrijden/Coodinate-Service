@@ -1,4 +1,3 @@
-using Coordinate_Service.Models;
 using Coordinate_Service.Services;
 using Microsoft.AspNetCore.Mvc;
 using RekeningRijden.RabbitMq;

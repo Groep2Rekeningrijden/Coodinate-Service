@@ -3,7 +3,6 @@ using Coordinate_Service.Models;
 using Coordinate_Service.Models.MongoDb;
 using MongoDB.Driver;
 using System.Linq.Expressions;
-using System.Net;
 
 namespace Coordinate_Service.Data.CoordinatesMongoDb
 {

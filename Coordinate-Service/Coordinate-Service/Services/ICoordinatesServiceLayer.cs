@@ -1,6 +1,4 @@
-﻿using Coordinate_Service.DTOs;
-using Coordinate_Service.Models;
-using RekeningRijden.RabbitMq;
+﻿using RekeningRijden.RabbitMq;
 
 namespace Coordinate_Service.Services
 {
