@@ -73,7 +73,7 @@ stages:
 
   - stage: Deploy
     displayName: "Deploy Docker Image"
-    dependsOn: docker Image
+    dependsOn: docker_image
     jobs:
       - job: DeployJob
         displayName: "Push to Docker Hub"
