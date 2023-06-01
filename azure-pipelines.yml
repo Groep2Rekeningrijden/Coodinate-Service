@@ -63,6 +63,14 @@ stages:
         steps:
           - checkout: self
             fetchDepth: 0
+            
+          - task: SonarCloudPrepare@1
+            inputs:
+              SonarCloud: 'SonarCloud'
+              organization: 'fontysverkeer'
+              scannerMode: 'MSBuild'
+              projectKey: 'FontysVerkeer_Rekeningrijden'
+              projectName: 'Rekeningrijden'
           - task: UseDotNet@2
             inputs:
               version: "7.x"
@@ -79,13 +87,7 @@ stages:
               command: "build"
               projects: "$(solution)"
               arguments: "--configuration $(buildConfiguration)"
-          - task: SonarCloudPrepare@1
-            inputs:
-              SonarCloud: 'SonarCloud'
-              organization: 'fontysverkeer'
-              scannerMode: 'MSBuild'
-              projectKey: 'FontysVerkeer_Rekeningrijden'
-              projectName: 'Rekeningrijden'
+
           - task: SonarCloudAnalyze@1
 
           - task: SonarCloudPublish@1
