@@ -14,7 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection("MongoDbSettings"));
 
 builder.Services.AddSingleton<IMongoDbSettings>(ServiceProvider =>
-ServiceProvider.GetRequiredService<IOptions<MongoDbSettings>>().Value);
+    ServiceProvider.GetRequiredService<IOptions<MongoDbSettings>>().Value);
 
 builder.Services.AddScoped(typeof(ICoordsRepository<>), typeof(CoordsRepository<>));
 builder.Services.AddScoped<ICoordinatesServiceLayer, CoordinatesServiceLayer>();
@@ -63,17 +63,8 @@ builder.Services.AddMassTransit(mt => mt.AddMassTransit(x =>
             c.Username(rabbitMqSettings.UserName);
             c.Password(rabbitMqSettings.Password);
         });
-        cfg.ReceiveEndpoint("Coords", c =>
-        {
-            c.ConfigureConsumer<CoordsConsumer>(ctx);
-
-        });
-        cfg.ReceiveEndpoint("Status", c =>
-        {
-            c.ConfigureConsumer<StatusConsumer>(ctx);
-
-        });
-             
+        cfg.ReceiveEndpoint("Coords", c => { c.ConfigureConsumer<CoordsConsumer>(ctx); });
+        cfg.ReceiveEndpoint("Status", c => { c.ConfigureConsumer<StatusConsumer>(ctx); });
     });
 }));
 
@@ -86,8 +77,8 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-    app.UseSwagger();
-    app.UseSwaggerUI();
+app.UseSwagger();
+app.UseSwaggerUI();
 
 
 //app.UseHttpsRedirection();
