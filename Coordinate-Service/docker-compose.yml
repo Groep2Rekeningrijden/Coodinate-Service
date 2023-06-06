@@ -1,19 +1,6 @@
-﻿version: "3.9"
-services:
-  coordinate-service:
+﻿services:
+  lts:
     image: fontyssa/coordinate-service
-    ports:
-      - "8080:8080"
-    depends_on:
-      - mongodb-coordinateservice
-
-  mongodb-coordinateservice:
-    image: mongo
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongodb-data:/data/db
-
-volumes:
-  mongodb-data:
-    driver: local
+    build:
+      context: .
+      dockerfile: Coordinate-Service/Dockerfile
